@@ -24,10 +24,8 @@ const auth_options: NextAuthOptions = {
                     data: {
                         email: user.email!,
                         name: user.name!,
-                        profile: {},
-                        id: 1,
                     }
-                }) 
+                })
             }
 
             return true
