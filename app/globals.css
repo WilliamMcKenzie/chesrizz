@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, light --prefersdark;
+}
+
+html {
+  --color-primary: #ffbb00 !important;
+  --color-secondary: #9900ff !important;
+  --color-accent: #ff0066 !important;
+  --accent: #c0c0c0 !important;
+  --btn-text-primary: #ffffff;
+
+  --color-primary-content: #FFF6DD;
+  --color-accent-content: #FFD7E7;
+  --color-error-content: #FFD7E7;
+  --color-success-content: rgb(233, 255, 250);
+  scrollbar-width: none;
+}
+.progress-primary {
+  color: #ffbb00 !important;
+}
+
+::-webkit-scrollbar {
+  width: 0em;
+  height: 0em;
+}
+
+.svg_blend {
+  position: fixed;
+  top: -1vh;
+  left: -1vw;
+
+  width: 102vw;
+  height: 102vh;
+  pointer-events: none;
+}
+
+.mt-6-i {
+  margin-top: 1.5rem !important;
+}
+.w-auto-i {
+  width: 60% !important;
+}
+.main_font {
+  font-family: var(--font-yomogi);
+}
+body {
+  color: #545253;
+  --green: #CBEDEA;
+  --blue: #94C2E5;
+
+  --black: #000000;
+  --ash-black: #222;
+  --white: #fafafa;
+  --sky: #00ccff;
+  --dusk: #6600ff;
+  --purple: #9900ff;
+  --pink: #ff0066;
+  --red: #fe0222;
+  --orange: #fd7702;
+  --yellow: #ffbb00;
+  --accent: var(--purple);
+
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  padding-bottom: 100px;
+  overflow: hidden;
+}
