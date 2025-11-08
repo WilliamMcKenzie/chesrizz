@@ -19,7 +19,7 @@ model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
   images String[]
-
+  
   user User @relation(fields: [userID], references: [id])
   userID Int @unique
 }
@@ -30,4 +30,5 @@ model User {
   name    String?
   profile Profile?
   posts   Conversation[]
+  elo     Int
 }
