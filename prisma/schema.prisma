@@ -31,5 +31,5 @@ model User {
   name    String?
   profile Profile?
   conversations   Conversation[]
-  elo     Int     @default(1)
+  elo     Int     @default(300)
 }

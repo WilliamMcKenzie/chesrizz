@@ -1,8 +1,7 @@
+import prisma from '@/app/components/prisma'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
 
@@ -26,7 +25,7 @@ const auth_options: NextAuthOptions = {
                         email: user.email!,
                         name: user.name!,
                         avatar: user.image!,
-                        elo: 1,
+                        elo: 300,
                     }
                 })
             }

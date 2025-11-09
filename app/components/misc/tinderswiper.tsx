@@ -1,6 +1,6 @@
 'use client'
 
-import Card from "./swipping"
+import Card from "./card"
 
 export default function TinderSwiper(props : any) {
     return (props.users.length == 0 ? <h1>EMPTY</h1> :

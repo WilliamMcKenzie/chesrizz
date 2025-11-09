@@ -24,7 +24,7 @@ export default function Home() {
       <div className={styles.hero}>
         <img className={styles.rizzchess} src={"rizzchess.png"}/>
         <h3>
-          if tinder had elo.
+          tinder with elo.
         </h3>
         <button className="btn" onClick={() => login()}>
           try it out

@@ -3,16 +3,18 @@ import { NextRequest } from 'next/server'
 
 export async function GET(request : NextRequest) {
     const searchParams = request.nextUrl.searchParams
-    const email = searchParams.get('email')!
+    const emails = JSON.parse(searchParams.get('emails')!)!
 
-    const user = await prisma.user.findFirst({
+    const users = await prisma.user.findMany({
         where: {
-            email: email,
+            email: {
+                in: emails
+            },
         },
         include: {
             profile: true
         }
     })
 
-    return new Response(JSON.stringify(user))
+    return new Response(JSON.stringify(users))
 }

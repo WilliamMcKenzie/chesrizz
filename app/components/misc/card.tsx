@@ -3,10 +3,11 @@
 import { motion, PanInfo } from "framer-motion"
 import { useState } from "react"
 import User from "./user";
+import Image from "next/image";
 
 interface SwipeCardProps {
   user: User
-  onSwipe: (direction: "left" | "right") => void
+  onSwipe: (direction: "left" | "right" | "neutral") => void
   active: boolean
 }
 
@@ -22,7 +23,7 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
     } else if (info.offset.x < -swipeThreshold) {
       setDragDirection("left");
     } else {
-      setDragDirection("left");
+      setDragDirection("neutral");
     }
   };
 
@@ -37,11 +38,11 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
       Math.abs(info.velocity.x) > velocityThreshold;
 
     if (swiped) {
-      const direction = info.offset.x > 0 ? "right" : "left";
+      const direction = info.offset.x > 0 ? "right" : "left"
       const update = () => {
-        onSwipe(direction);
-        setDragDirection("left");
-      };
+        onSwipe(direction)
+        setDragDirection("neutral")
+      }
       update();
     }
   };
@@ -53,9 +54,6 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
         absolute
         w-100 h-[600px]
         bg-white
-        rounded-2xl
-        border-black
-        border-3
         shadow-2xl
         cursor-grab
         overflow-hidden
@@ -84,23 +82,18 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
             <>
               <motion.div
                 className="
-            absolute
-            pointer-events-none
-            top-4
-            left-3
-            border-2
-            border-green-400
-            text-black
-            font-bold
-            py-2
-            px-4
-            rounded-xl
-            shadow-lg
-            transform -rotate-6
-            bg-white/90
-            z-10
-            "
-                initial={{ opacity: 0, scale: 0.8 }}
+                absolute
+                pointer-events-none
+                top-4
+                left-3
+                py-2
+                px-4
+                transform -rotate-20
+                z-10
+                btn
+                btn-success
+                "
+                initial={{ opacity: 0.3, scale: 0.8 }}
                 animate={{
                   opacity: dragDirection === "left" ? 1 : 0.3,
                   scale: dragDirection === "left" ? 1.1 : 0.8,
@@ -110,23 +103,20 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
               </motion.div>
               <motion.div
                 className="
-            absolute
-            top-4
-            right-3
-            border-2
-            border-red-400
-            text-black
-            pointer-events-none
-            font-bold
-            py-2
-            px-4
-            rounded-xl
-            shadow-lg
-            transform rotate-6
-            bg-white/90
-            z-10
-            "
-                initial={{ opacity: 0, scale: 0.8 }}
+                absolute
+                top-4
+                right-3
+                pointer-events-none
+                font-bold
+                py-2
+                px-4
+                shadow-lg
+                transform rotate-20
+                z-10
+                btn
+                btn-error
+                "
+                initial={{ opacity: 0.3, scale: 0.8 }}
                 animate={{
                   opacity: dragDirection === "right" ? 1 : 0.3,
                   scale: dragDirection === "right" ? 1.1 : 0.8,
@@ -138,13 +128,10 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
           )}
         </div>
         <div className="flex justify-center mt-10 items-center flex-col">
-          <div className="w-64 h-64 rounded-full border-3 overflow-hidden">
-            <motion.img
-              draggable={false}
-              src={user.avatar}
-              alt={user.name}
-              className=" w-full h-full  z-0"
-            />
+          <div className="w-64 h-64 rounded-xl overflow-hidden">
+            <div className={"avatar w-full h-full z-0"}>
+                <Image src={user.avatar} width={96} height={96} alt="profile"></Image>
+            </div>
           </div>
           <div className="flex items-center flex-col ">
              <motion.h2
@@ -153,7 +140,7 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {user.name}
+            {user.name} <a className="text-gray-600 text-base">[{user.elo} elo]</a>
           </motion.h2>
         <div className="p-6">
           <motion.p

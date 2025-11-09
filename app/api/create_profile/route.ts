@@ -1,12 +1,10 @@
 "use server"
 
-import { PrismaClient } from "@prisma/client"
 import { groq } from '@ai-sdk/groq'
 import { generateText } from 'ai'
 import { NextRequest } from "next/server"
 import { getServerSession } from "next-auth"
-
-const prisma = new PrismaClient()
+import prisma from '@/app/components/prisma'
 
 export async function GET(request : NextRequest) {
     const session = await getServerSession()

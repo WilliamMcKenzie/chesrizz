@@ -1,0 +1,57 @@
+.main {
+    height: 75vh;
+}
+
+.top {
+    margin-top: 2.5rem;
+    min-width: 65vw;
+    display: flex;
+    align-items: center;
+}
+
+.top div {
+    margin-left: auto;
+}
+
+.top span {
+    margin-right: auto;
+}
+
+.content {
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+
+.message {
+    position: relative;
+    margin: 1rem;
+    padding: 1rem;
+    max-width: 20vw;
+    width: fit-content;
+    font-size: small;
+    line-break: anywhere;
+}
+.ours {
+    background-color: oklch(96.7% 0.003 264.542);
+    margin-left: auto;
+}
+.theirs {
+    background-color: oklch(96.7% 0.003 264.542);
+    margin-right: auto;
+}
+.special {
+    position: absolute;
+    top: -8px;
+    width: 32px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.theirs .special {
+    left: -40px
+}
+.ours .special {
+    right: -40px
+}

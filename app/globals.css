@@ -31,8 +31,37 @@ h1 {
   font-weight: 600;
 }
 
+img {
+  pointer-events: none;
+}
+
 .navbar {
   max-width: 80vw;
   margin-left: auto;
   margin-right: auto;
+}
+
+.brilliant {
+  background-color: oklch(95% 0.052 163.051) !important;
+  margin-left: auto;
+}
+
+.great {
+  background-color: oklch(93.2% 0.032 255.585) !important;
+  margin-left: auto;
+}
+
+.good {
+  background-color: oklch(96.7% 0.067 122.328) !important;
+  margin-left: auto;
+}
+
+.mistake {
+  background-color: oklch(90.1% 0.076 70.697) !important;
+  margin-left: auto;
+}
+
+.blunder {
+  background-color: oklch(89.2% 0.058 10.001) !important;
+  margin-left: auto;
 }

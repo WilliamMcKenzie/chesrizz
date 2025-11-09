@@ -39,13 +39,13 @@ export default function Edit() {
         {
             user ?
             <div className={styles.container}>
-                <h1>{user.name} <a className={`text-gray-600 ${styles.elo}`}>[{user.elo} elo]</a></h1>
+                <h1>{user.name} <a className={`text-gray-600 ${styles.elo}`}>[{user.elo} rizz]</a></h1>
                 <button>
                     <div className={`avatar ${styles.avatar}`}>
-                    <div className="w-24 rounded-xl">
-                        <Image src={session?.user?.image!} width={96} height={96} alt="profile"></Image>
+                        <div className="w-24 rounded-xl">
+                            <Image src={session?.user?.image!} width={96} height={96} alt="profile"></Image>
+                        </div>
                     </div>
-                </div>
                 </button>
                 <textarea onBlur={save} onMouseLeave={save} className={`textarea textarea-ghost ${styles.bio}`} onChange={bio_change} value={bio} placeholder="Hobbies, job, background"/>
             </div> : <>{user}</>
