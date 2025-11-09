@@ -21,6 +21,7 @@ export default function App() {
     const router = useRouter()
     const { data: session } = useSession()
     const [user, setUser] = useState<User>()
+    const userRef = useRef<User | undefined>(null)
     const [opponent, setOpponent] = useState<User>()
     const opponentRef = useRef<User | undefined>(null)
     const [messages, setMessages] = useState<MessageStruct[]>([])
@@ -34,13 +35,36 @@ export default function App() {
         }
     }
 
+    const handleRizz = async (special : string, author : string) => {
+        var rizz = 0
+        if (special == "brilliant") { rizz = 50}
+        if (special == "great") { rizz = 10}
+        if (special == "good") { rizz = 5}
+        if (special == "mistake") { rizz = -5}
+        if (special == "blunder") { rizz = -10}
+
+        const new_rizz = rizz + (author == userRef.current?.email ? userRef.current.elo : opponentRef!.current!.elo)
+        const new_user = await (await fetch(`./api/update_rizz?email=${author}&rizz=${new_rizz}`)).json()
+        
+        if (author == userRef.current?.email) {
+            setUser(new_user)
+        } else {
+            setOpponent(new_user)
+        }
+    }
+
     useEffect(() => {
         opponentRef.current = opponent
     }, [opponent])
+
+    useEffect(() => {
+        userRef.current = user
+    }, [user])
     
     const socketeer = async (user : User) => {
         console.log("Connecting to 8080")
-        const websocket = new WebSocket('wss://matchmaker-y3b8.onrender.com/ws')
+        // const websocket = new WebSocket('wss://matchmaker-y3b8.onrender.com/ws')
+        const websocket = new WebSocket('ws://localhost:8080/ws')
         setSocket(websocket)
 
         websocket!.onopen = () => {
@@ -60,6 +84,8 @@ export default function App() {
                     author : message_data[1],
                     special : message_data[2],
                 }
+
+                handleRizz(message_data[2], message_data[1])
                 setMessages(old_messages => [...old_messages, message])
             }
         }

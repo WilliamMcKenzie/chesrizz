@@ -33,7 +33,6 @@ export default function Home() {
           see devpost
         </button>
       </div>
-    <Messaging/>
     </main>
   )
 }

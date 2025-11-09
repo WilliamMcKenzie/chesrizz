@@ -24,18 +24,16 @@ export default function Messenger(props : any) {
 
     return <main className={styles.main}>
         <div className={styles.top}>
-            <span className="countdown font-mono text-xl">
-                <span aria-live="polite">10</span>:
-                <span aria-live="polite">24</span>:
-                <span aria-live="polite">59</span>
-            </span>
+            <button className="btn btn-ghost mr-auto">
+                leave simulator
+            </button>
             <h1>
                 {opponent.name} <a className={`text-gray-600 text-base`}>[{opponent.elo} rizz]</a>
             </h1>
         </div>
         <div className={styles.content}>
             {messages.map((message: MessageStruct) => (
-                <Message author={message.author} value={message.content} ours={message.author == self.email} special={message.special != "" ? message.special : null}/>
+                <Message author={message.author} value={message.content} ours={message.author == self.email} special={!message.special.includes("nothing") ? message.special : null}/>
             ))}
             {
                 speechBubble ? <></> : <></>
