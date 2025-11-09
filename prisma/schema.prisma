@@ -27,8 +27,9 @@ model Profile {
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
+  avatar  String   @default("")
   name    String?
   profile Profile?
   conversations   Conversation[]
-  elo     Int?
+  elo     Int     @default(0)
 }
