@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import User from "../components/user"
 
 import TinderSwiper from "../components/tinderswiper"
-
+import Navbar from "./navbar"
 export default function App() {
     const router = useRouter()
     const { data: session } = useSession()
@@ -30,6 +30,7 @@ export default function App() {
             ws.send(user?.elo.toString()!)
         }
         ws.onmessage = (event) => {
+            
             console.log(event)
         }
 
@@ -45,6 +46,9 @@ export default function App() {
     }, [])
 
     return <>
+        <div>
+        <Navbar/>
         <TinderSwiper/>
+        </div>
     </>
 }
