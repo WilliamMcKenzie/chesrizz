@@ -1,6 +1,4 @@
-import { signIn } from "next-auth/react";
-
-export default function Navbar() {
+export default function Navbar(params : any) {
 
     return <div className="navbar bg-base-100">
     <div className="navbar-start">
@@ -8,7 +6,7 @@ export default function Navbar() {
     <div className="navbar-center">
     </div>
     <div className="navbar-end">
-        <button className="btn btn-ghost" onClick={() => signIn('google', { callbackUrl: "/app" })}>
+        <button className="btn btn-ghost" onClick={params.login}>
             login
         </button>
     </div>

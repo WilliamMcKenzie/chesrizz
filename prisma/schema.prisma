@@ -11,8 +11,8 @@ model Conversation {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  authors   User[]
+  messages Json[]
+  users   User[]
 }
 
 model Profile {
@@ -29,6 +29,6 @@ model User {
   email   String   @unique
   name    String?
   profile Profile?
-  posts   Conversation[]
+  conversations   Conversation[]
   elo     Int?
 }
