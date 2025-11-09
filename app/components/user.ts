@@ -3,5 +3,6 @@ export default interface User {
   email: string
   name: string
   elo: number
+  avatar: string
   profile: Record<string, any> | null
 }
