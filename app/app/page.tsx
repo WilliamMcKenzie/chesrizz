@@ -17,34 +17,41 @@ export default function App() {
         if (!session) router.push("/")
         else {
             setUser(data)
+            socketeer(data)
         }
     }
 
-    const socketeer = async () => {
+    const socketeer = async (user : User) => {
         console.log("Connecting to 8080")
         const ws = new WebSocket('ws://localhost:8080/ws')
 
+
         ws.onopen = () => {
             console.log("Connected to 8080")
+            console.log(`ELO: ${user?.elo.toString()!}`)
             ws.send(user?.email!)
             ws.send(user?.elo.toString()!)
         }
+
         ws.onmessage = (event) => {
-            console.log(event)
+            console.log(event.data)
         }
 
         return () => ws.close();
     }
 
     useEffect(() => {
+        if (!session) {
+            return
+        }
+
         const init = async () => {
             await get_user()
-            await socketeer()
         }
         init()
     }, [])
 
     return <>
-        <TinderSwiper/>
+        <TinderSwiper emails={["williamqm.gmail.com"]}/>
     </>
 }

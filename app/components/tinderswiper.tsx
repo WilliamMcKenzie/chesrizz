@@ -24,9 +24,10 @@ const testCards: Card[] = [
     bio: 'Travel enthusiast and bookworm. Always planning the next adventure.',
     image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop',
   },
-];
+]
 
-export default function TinderSwiper() {
+export default function TinderSwiper(props) {
+    const emails = props.emails
     const [myCards, setMyCards] = useState<Card[]>(testCards);
     const [swipeHistory, setSwipeHistory] = useState<{id: number, direction: 'left' | 'right'}[]>([]);
 

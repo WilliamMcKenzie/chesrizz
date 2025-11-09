@@ -24,6 +24,8 @@ const auth_options: NextAuthOptions = {
                     data: {
                         email: user.email!,
                         name: user.name!,
+                        avatar: user.image!,
+                        elo: 1,
                     }
                 })
             }
