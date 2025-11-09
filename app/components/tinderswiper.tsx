@@ -39,13 +39,13 @@ export default function TinderSwiper() {
     
     const currCard = myCards[0];
     const nextCard = myCards[1];
-    const noMore = index => myCards.length
+    const noMore = myCards.length === 0;
 
     global.smashes = swipeHistory.filter(swipe => swipe.direction === 'right').length;
     global.passes = swipeHistory.filter(swipe => swipe.direction === 'left').length;
 
-    return (
-
+    return noMore ? (<div>no more images</div>) :(
+        
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
         
         <div>
