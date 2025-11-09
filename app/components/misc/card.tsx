@@ -3,16 +3,17 @@
 import { motion, PanInfo } from "framer-motion"
 import { useState } from "react"
 import User from "./user";
-import Image from "next/image";
 
 interface SwipeCardProps {
   user: User
-  onSwipe: (direction: "left" | "right" | "neutral") => void
+  onSwipe: (direction: "left" | "right") => void
   active: boolean
 }
-
-export default function Card({ user, onSwipe, active }: SwipeCardProps) {
-  const [dragDirection, setDragDirection] = useState<"left" | "right" | null>(null);
+//
+export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
+  const [dragDirection, setDragDirection] = useState<
+    "left" | "right" | "neutral" | null
+  >(null);
 
   const swipeThreshold = 100;
   const velocityThreshold = 500;
@@ -40,9 +41,9 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
     if (swiped) {
       const direction = info.offset.x > 0 ? "right" : "left"
       const update = () => {
-        onSwipe(direction)
-        setDragDirection("neutral")
-      }
+        onSwipe(direction);
+        setDragDirection("left");
+      };
       update();
     }
   };
@@ -77,7 +78,6 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
         }}
       >
         <div className="bg-white-300 w-full h-1/10 flex justify-center items-center ">
-          
           {active && (
             <>
               <motion.div
@@ -128,10 +128,13 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
           )}
         </div>
         <div className="flex justify-center mt-10 items-center flex-col">
-          <div className="w-64 h-64 rounded-xl overflow-hidden">
-            <div className={"avatar w-full h-full z-0"}>
-                <Image src={user.avatar} width={96} height={96} alt="profile"></Image>
-            </div>
+          <div className="w-64 h-64 rounded-full border-3 overflow-hidden">
+            <motion.img
+              draggable={false}
+              src={user.avatar}
+              alt={user.name}
+              className=" w-full h-full  z-0"
+            />
           </div>
           <div className="flex items-center flex-col ">
              <motion.h2
@@ -140,7 +143,7 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {user.name} <a className="text-gray-600 text-base">[{user.elo} elo]</a>
+            {user.name}
           </motion.h2>
         <div className="p-6">
           <motion.p
@@ -154,7 +157,6 @@ export default function Card({ user, onSwipe, active }: SwipeCardProps) {
         </div>
           </div>
         </div>
-           
       </motion.div>
     </div>
   );
