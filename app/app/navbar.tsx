@@ -1,6 +1,7 @@
+import { useRouter } from "next/navigation"
 
 export default function Navbar(params : any) {
-
+    const router = useRouter()
    /* const {data, error} =  supabase
         .from("User")
         .select("avatar")
@@ -13,7 +14,7 @@ export default function Navbar(params : any) {
       <div className="navbar-start"></div>
       <div className="navbar-center"></div>
       <div className="navbar-end">
-          <button className="btn btn-ghost" onClick={params.login}>
+          <button className="btn btn-ghost" onClick={() => router.push("/customize")}>
               Edit My Profile 
             </button>
             <image src="userAvatar"></image>

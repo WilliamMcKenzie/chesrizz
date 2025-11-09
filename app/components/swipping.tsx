@@ -87,7 +87,6 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
         }}
       >
         <div className="bg-white-300 w-full h-1/10 flex justify-center items-center ">
-          
           {active && (
             <>
               <motion.div
@@ -155,27 +154,26 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             />
           </div>
           <div className="flex items-center flex-col ">
-             <motion.h2
-            className="text-2xl mt-10 font-bold text-gray-800"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            {card.name}
-          </motion.h2>
-        <div className="p-6">
-          <motion.p
-            className="text-gray-600 mt-2 line-clamp-2"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            {card.bio}
-          </motion.p>
-        </div>
+            <motion.h2
+              className="text-2xl mt-10 font-bold text-gray-800"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              {card.name}
+            </motion.h2>
+            <div className="p-6">
+              <motion.p
+                className="text-gray-600 mt-2 line-clamp-2"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                {card.bio}
+              </motion.p>
+            </div>
           </div>
         </div>
-           
       </motion.div>
     </div>
   );
