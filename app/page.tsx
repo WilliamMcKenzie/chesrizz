@@ -4,6 +4,14 @@ import { useRouter } from 'next/navigation'
 import { signIn, useSession } from "next-auth/react"
 import styles from "./components/landing/style.module.css";
 import Navbar from "./components/landing/navbar";
+import TinderSwiper from './components/tinderswiper';
+
+
+
+
+
+
+
 
 interface User {
   id: string
@@ -24,6 +32,8 @@ export default function Home() {
     else router.push("/app")
   }
 
+
+
   return (
     <main className={styles.main}>
       <Navbar login={login}/>
@@ -39,6 +49,7 @@ export default function Home() {
           see devpost
         </button>
       </div>
+      <TinderSwiper/>
     </main>
   )
 }
