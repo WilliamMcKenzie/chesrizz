@@ -27,7 +27,8 @@ const auth_options: NextAuthOptions = {
                     }
                 })
             }
-
+            
+            await prisma.$disconnect()
             return true
         }
     }

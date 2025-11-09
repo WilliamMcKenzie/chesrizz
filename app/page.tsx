@@ -9,6 +9,11 @@ export default function Home() {
   const { data: session } = useSession()
   const router = useRouter()
 
+  var test = async () => {
+    await fetch(`api/create_profile?bio=${"Im a great person, own a dog, a house, a village, and have a great job."}`)
+    await fetch(`api/create_profile?bio=${"Im not a huge fan of sports."}`)
+  }
+
   return (
     <main className={styles.main}>
       <Navbar/>
@@ -17,7 +22,7 @@ export default function Home() {
         <h3>
           if tinder had elo.
         </h3>
-        <button className="btn" onClick={() => signIn('google', { callbackUrl: "/onboard" })}>
+        <button className="btn" onClick={() => test()}>
           try it out
         </button>
         <button className="btn">
