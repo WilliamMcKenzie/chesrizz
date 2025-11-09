@@ -16,6 +16,7 @@ const auth_options: NextAuthOptions = {
     callbacks : {
         async signIn({ user })
         {
+            
             const fetched_user = await prisma.user.findFirst({ where: { email: user.email! } })
 
             if (!fetched_user)

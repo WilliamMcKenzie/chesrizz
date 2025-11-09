@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import User from "../components/user"
 
 import TinderSwiper from "../components/tinderswiper"
-
+import Navbar from "./navbar"
 export default function App() {
     const router = useRouter()
     const { data: session } = useSession()
@@ -34,7 +34,7 @@ export default function App() {
         }
 
         ws.onmessage = (event) => {
-            console.log(event.data)
+            console.log(event)
         }
 
         return () => ws.close();
@@ -52,6 +52,6 @@ export default function App() {
     }, [])
 
     return <>
-        <TinderSwiper emails={["williamqm.gmail.com"]}/>
+        <TinderSwiper/>
     </>
 }

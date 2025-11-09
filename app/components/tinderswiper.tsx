@@ -11,6 +11,7 @@ interface Card {
   bio: string;
   image: string;
 }
+  
 const testCards: Card[] = [
   {
     id: 1,

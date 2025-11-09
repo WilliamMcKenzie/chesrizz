@@ -20,7 +20,6 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
   const [dragDirection, setDragDirection] = useState<
     "left" | "right" | "neutral" | null
   >(null);
-  
 
   const swipeThreshold = 100;
   const velocityThreshold = 500;
@@ -52,7 +51,6 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
         setDragDirection("neutral");
       };
       update();
-      
     }
   };
 
@@ -88,22 +86,16 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
           transition: { duration: 0.5 },
         }}
       >
-        <div className="relative w-full h-3/4">
-          <motion.img
-            draggable={false}
-            src={card.image}
-            alt={card.name}
-            className="w-full h-full object-cover z-0"
-          />
-          <div className="absolute bottom-0 left-0 right-0 pointer-events-none" />
+        <div className="bg-white-300 w-full h-1/10 flex justify-center items-center ">
+          
           {active && (
             <>
               <motion.div
                 className="
             absolute
             pointer-events-none
-            top-6
-            left-6
+            top-4
+            left-3
             border-2
             border-green-400
             text-black
@@ -114,6 +106,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             shadow-lg
             transform -rotate-6
             bg-white/90
+            z-10
             "
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
@@ -126,8 +119,8 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
               <motion.div
                 className="
             absolute
-            top-6
-            right-6
+            top-4
+            right-3
             border-2
             border-red-400
             text-black
@@ -139,6 +132,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             shadow-lg
             transform rotate-6
             bg-white/90
+            z-10
             "
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
@@ -151,16 +145,25 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             </>
           )}
         </div>
-
-        <div className="p-6">
-          <motion.h2
-            className="text-2xl font-bold text-gray-800"
+        <div className="flex justify-center mt-10 items-center flex-col">
+          <div className="w-64 h-64 rounded-full border-3 overflow-hidden">
+            <motion.img
+              draggable={false}
+              src={card.image}
+              alt={card.name}
+              className=" w-full h-full  z-0"
+            />
+          </div>
+          <div className="flex items-center flex-col ">
+             <motion.h2
+            className="text-2xl mt-10 font-bold text-gray-800"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             {card.name}
           </motion.h2>
+        <div className="p-6">
           <motion.p
             className="text-gray-600 mt-2 line-clamp-2"
             initial={{ y: 20, opacity: 0 }}
@@ -170,6 +173,9 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             {card.bio}
           </motion.p>
         </div>
+          </div>
+        </div>
+           
       </motion.div>
     </div>
   );
