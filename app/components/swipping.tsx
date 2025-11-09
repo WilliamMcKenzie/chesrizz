@@ -1,25 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { motion, PanInfo } from "framer-motion";
-import { useEffect } from "react";
-interface Card {
-  id: number;
-  name: string;
-  bio: string;
-  image?: string[] | string;
-}
+import { motion, PanInfo } from "framer-motion"
+import { useState } from "react"
+import User from "./user";
 
 interface SwipeCardProps {
-  card: Card;
-  onSwipe: (direction: "left" | "neutral" | "right") => void;
-  active: boolean;
+  user: User
+  onSwipe: (direction: "left" | "right") => void
+  active: boolean
 }
-//
-export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
-  const [dragDirection, setDragDirection] = useState<
-    "left" | "right" | "neutral" | null
-  >(null);
+
+export default function Card({ user, onSwipe, active }: SwipeCardProps) {
+  const [dragDirection, setDragDirection] = useState<"left" | "right" | null>(null);
 
   const swipeThreshold = 100;
   const velocityThreshold = 500;
@@ -30,7 +22,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
     } else if (info.offset.x < -swipeThreshold) {
       setDragDirection("left");
     } else {
-      setDragDirection("neutral");
+      setDragDirection("left");
     }
   };
 
@@ -48,7 +40,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
       const direction = info.offset.x > 0 ? "right" : "left";
       const update = () => {
         onSwipe(direction);
-        setDragDirection("neutral");
+        setDragDirection("left");
       };
       update();
     }
@@ -149,8 +141,8 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
           <div className="w-64 h-64 rounded-full border-3 overflow-hidden">
             <motion.img
               draggable={false}
-              src={card.image}
-              alt={card.name}
+              src={user.avatar}
+              alt={user.name}
               className=" w-full h-full  z-0"
             />
           </div>
@@ -161,7 +153,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {card.name}
+            {user.name}
           </motion.h2>
         <div className="p-6">
           <motion.p
@@ -170,7 +162,7 @@ export default function SwipeCard({ card, onSwipe, active }: SwipeCardProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            {card.bio}
+            {user.profile!.bio}
           </motion.p>
         </div>
           </div>
