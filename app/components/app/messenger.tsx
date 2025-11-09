@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Message from "./message"
 import styles from "./messenger.module.css"
+import Bubble from "./bubble"
 
 interface MessageStruct {
     content : string
@@ -13,9 +14,11 @@ export default function Messenger(props : any) {
     const opponent = props.opponent
     const self = props.self 
     const [message, setMessage] = useState("")
+    const [speechBubble, setBubble] = useState(false)
 
     var submit = () => {
         setMessage("")
+        setBubble(true)
         props.socket.send(message)
     }
 
@@ -34,6 +37,9 @@ export default function Messenger(props : any) {
             {messages.map((message: MessageStruct) => (
                 <Message author={message.author} value={message.content} ours={message.author == self.email} special={message.special != "" ? message.special : null}/>
             ))}
+            {
+                speechBubble ? <></> : <></>
+            }
         </div>
         <div className={styles.bot}>
             <h1>

@@ -40,7 +40,7 @@ export default function App() {
     
     const socketeer = async (user : User) => {
         console.log("Connecting to 8080")
-        const websocket = new WebSocket('ws://localhost:8080/ws')
+        const websocket = new WebSocket('wss://matchmaker-y3b8.onrender.com/ws')
         setSocket(websocket)
 
         websocket!.onopen = () => {

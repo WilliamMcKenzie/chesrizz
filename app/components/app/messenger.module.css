@@ -50,8 +50,8 @@
 }
 
 .theirs .special {
-    left: -40px
+    right: -40px
 }
 .ours .special {
-    right: -40px
+    left: -40px
 }
