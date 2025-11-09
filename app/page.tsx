@@ -2,23 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 import { signIn, useSession } from "next-auth/react"
-import styles from "./components/landing/style.module.css";
-import Navbar from "./components/landing/navbar";
-import TinderSwiper from './components/tinderswiper';
-
-
-
-
-
-
-
-
-interface User {
-  id: string
-  email: string
-  name: string
-  profile: Record<string, any> | null
-}
+import styles from "./components/landing/style.module.css"
+import Navbar from "./components/landing/navbar"
+import User from './components/user'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -31,8 +17,6 @@ export default function Home() {
     else if (!data.profile) router.push("/onboard")
     else router.push("/app")
   }
-
-
 
   return (
     <main className={styles.main}>
@@ -49,7 +33,6 @@ export default function Home() {
           see devpost
         </button>
       </div>
-      <TinderSwiper/>
     </main>
   )
 }

@@ -3,15 +3,7 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-
-interface User {
-  id: string
-  email: string
-  name: string
-  elo: number
-  bio: string
-  profile: Record<string, any> | null
-}
+import User from "../user"
 
 export default function Edit() {
     const router = useRouter()
@@ -19,14 +11,18 @@ export default function Edit() {
     const [user, setUser] = useState<User>()
     const [bio, setBio] = useState<string>()
 
+    const get_user = async () => {
+        const data: User = await (await fetch(`./api/get_user?email=${session?.user?.email}`)).json()
+        if (!session) router.push("/")
+        else {
+            setUser(data)
+            setBio(data!.profile!.bio)
+        }
+    }
+
     useEffect(() => {
         const init = async () => {
-            const data: User = await (await fetch(`./api/get_user?email=${session?.user?.email}`)).json()
-            if (!session) router.push("/")
-            else {
-                setUser(data)
-                setBio(data!.profile!.bio)
-            }
+            await get_user()
         }
         init()
     }, [])
